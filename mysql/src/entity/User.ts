@@ -1,5 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
-
+import {
+    Column,
+    Entity,
+    JoinTable,
+    OneToMany,
+    PrimaryGeneratedColumn,
+  } from "typeorm"
+import { Post } from "./Post"
 @Entity()
 export class User {
 
@@ -15,4 +21,7 @@ export class User {
     @Column()
     age: number
 
+    @OneToMany(() => Post, (post) => post.user)
+    @JoinTable()
+    posts: Post[]
 }
